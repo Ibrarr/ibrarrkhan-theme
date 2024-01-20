@@ -1,0 +1,20 @@
+#wrapper {
+  overflow-x: hidden;
+}
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Splide
+@import '~@splidejs/splide/dist/css/splide.min.css';
+
+// Variables
+@import 'variables';
+
+// Mixins
+@import 'mixins';
+
+// Components
+@import "components/header";
+@import "components/front-page/front-page";
+@import "components/footer";

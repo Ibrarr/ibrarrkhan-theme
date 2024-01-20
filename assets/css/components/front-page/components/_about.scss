@@ -1,0 +1,42 @@
+#about {
+  scroll-margin-top: $scroll-margin;
+  padding-bottom: $section-spacing;
+  padding-top: $section-spacing;
+  background: $light-blue;
+
+  .heading {
+    @include heading;
+  }
+
+  .headshot {
+    img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+
+      @include media-breakpoint-down(md) {
+        width: 50%;
+        margin: auto;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .text {
+    @include body-text;
+
+    a {
+      color: $primary-blue;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all .3s;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+}

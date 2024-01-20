@@ -1,0 +1,50 @@
+#contact {
+  scroll-margin-top: $scroll-margin;
+  padding-bottom: 100px;
+  padding-top: $section-spacing;
+
+  .heading {
+    @include heading;
+  }
+
+  .text {
+    h1 {
+      text-align: left !important;
+      margin: initial;
+      margin-bottom: 20px;
+    }
+    p {
+      @include body-text;
+      text-align: left !important;
+    }
+  }
+
+  .form {
+    .contact-form {
+      .gform_fields {
+        grid-row-gap: 20px !important;
+      }
+
+      label {
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+      }
+
+      input, textarea {
+        border-radius: 5px;
+        border: none;
+        background: #ffffff;
+        box-shadow: none !important;
+      }
+
+      textarea {
+        min-block-size: auto;
+      }
+
+      input[type='submit'] {
+        @include button;
+        margin-left: auto;
+      }
+    }
+  }
+}

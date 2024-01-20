@@ -1,0 +1,49 @@
+@mixin button() {
+  display: block;
+  width: fit-content;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: $primary-blue;
+  border: 2px solid $primary-blue;
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: all .3s;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  &:hover {
+    background: $light-blue;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: .9rem;
+    line-height: 1rem;
+  }
+}
+
+@mixin heading() {
+  margin: auto auto 40px;
+
+  h1 {
+    width: fit-content;
+    font-weight: 900;
+    border-bottom: 3px solid $primary-blue;
+    margin: auto;
+    color: $text-color;
+  }
+
+  p {
+    @include body-text;
+    text-align: center;
+    margin-top: 5px;
+  }
+}
+
+@mixin body-text() {
+  color: $text-color;
+
+  @include media-breakpoint-down(sm) {
+    font-size: .9rem;
+  }
+}
