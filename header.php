@@ -14,7 +14,7 @@
             <div class="container">
                 <div id="branding">
                     <div id="site-logo" itemprop="publisher" itemscope itemtype=" ">
-                        <a href="#top"><img src="<?php the_field('header_logo', get_option( 'page_on_front' )) ?>" itemprop="logo"></a>
+                        <a href="#top"><img src="<?php the_field('header_logo', 'options') ?>" itemprop="logo"></a>
                     </div>
                 </div>
                 <nav id="menu" role="navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
