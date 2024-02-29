@@ -63,9 +63,6 @@ jQuery(document).ready(function ($) {
       }
     }
   });
-  $(document).on('workContentLoaded', function () {
-    console.log('workContentLoaded event was triggered');
-  });
 });
 
 /***/ }),
