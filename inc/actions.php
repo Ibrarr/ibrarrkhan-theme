@@ -13,7 +13,8 @@ function ibrarrkhan_setup() {
 	if (!isset($content_width)) {
 		$content_width = 1920;
 	}
-	register_nav_menus(array('main-menu' => esc_html__('Main Menu', 'ibrarrkhan')));
+	register_nav_menus(array('main-menu-home' => esc_html__('Main Menu Homepage', 'ibrarrkhan')));
+	register_nav_menus(array('main-menu-other' => esc_html__('Main Menu Other Pages', 'ibrarrkhan')));
 }
 
 add_action('admin_notices', 'ibrarrkhan_notice');

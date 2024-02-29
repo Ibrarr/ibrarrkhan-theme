@@ -3765,175 +3765,6 @@ var SplideRenderer = /*#__PURE__*/function () {
 
 
 
-/***/ }),
-
-/***/ "./assets/js/header.js":
-/*!*****************************!*\
-  !*** ./assets/js/header.js ***!
-  \*****************************/
-/***/ (function() {
-
-jQuery(document).ready(function ($) {
-  var hamburgerMenu = $(".hamburger-menu");
-  hamburgerMenu.on("click", function (e) {
-    e.stopPropagation();
-    hamburgerMenu.toggleClass("active");
-    $("header#header nav").slideToggle(300);
-    $(".overlay").fadeToggle(300);
-    if (hamburgerMenu.hasClass("active")) {
-      $("body").css("overflow", "hidden");
-    } else {
-      $("body").css("overflow", "auto");
-    }
-  });
-  $(document).on("click", function (e) {
-    if ($(window).width() < 768 && !$(e.target).closest("header#header").length) {
-      closeMenu();
-    }
-  });
-  $("header#header").on("click", function (e) {
-    e.stopPropagation();
-  });
-  $("header#header a").on("click", function () {
-    if ($(window).width() < 768) {
-      closeMenu();
-      $("body").css("overflow", "auto");
-    }
-  });
-  function closeMenu() {
-    hamburgerMenu.removeClass("active");
-    $("header#header nav").slideUp(300);
-    $(".overlay").fadeOut(300);
-  }
-  function scrollFunction() {
-    var header = $('header');
-    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-      header.addClass('header-scrolling');
-    } else {
-      header.removeClass('header-scrolling');
-    }
-  }
-  window.onscroll = function () {
-    scrollFunction();
-  };
-  $(".menu-item a, #site-logo a, .anchor-button").on("click", function (e) {
-    e.preventDefault();
-    var target = $(this).attr('href');
-    $(target)[0].scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  });
-});
-
-/***/ }),
-
-/***/ "./assets/js/testimonials.js":
-/*!***********************************!*\
-  !*** ./assets/js/testimonials.js ***!
-  \***********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
-
-jQuery(document).ready(function ($) {
-  var splide = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__["default"]('#testimonials-slider', {
-    type: 'loop',
-    focus: 'center',
-    isNavigation: true,
-    updateOnMove: true,
-    perPage: 3,
-    perMove: 1,
-    breakpoints: {
-      991: {
-        perPage: 2
-      },
-      767: {
-        perPage: 1
-      }
-    }
-  });
-  splide.mount();
-});
-
-/***/ }),
-
-/***/ "./assets/js/work-filter.js":
-/*!**********************************!*\
-  !*** ./assets/js/work-filter.js ***!
-  \**********************************/
-/***/ (function() {
-
-jQuery(document).ready(function ($) {
-  var offset = 0;
-  var typeOfWorkGlobal = 'all';
-  var itemsPerLoad = 5;
-  var totalItems = 0;
-  var isLoading = false;
-  function fetchWork(typeOfWork, newOffset) {
-    if (isLoading) return;
-    isLoading = true;
-    $('#loading-indicator').show();
-    $.ajax({
-      url: frontendajax.ajaxurl,
-      type: 'POST',
-      data: {
-        action: 'filter_work',
-        type_of_work: typeOfWork,
-        offset: offset
-      },
-      success: function success(response) {
-        var data = JSON.parse(response);
-        if (newOffset === 0) {
-          $('#all-work-container').html(data.html);
-        } else {
-          $('#all-work-container').append(data.html);
-        }
-        totalItems = data.total;
-        offset += itemsPerLoad;
-        if (offset >= totalItems) {
-          $('#see-more-work').hide();
-        } else {
-          $('#see-more-work').show();
-        }
-        $('#loading-indicator').hide();
-        isLoading = false;
-      },
-      error: function error() {
-        $('#loading-indicator').hide();
-        isLoading = false;
-        console.log('Error fetching data');
-      }
-    });
-  }
-  fetchWork('all', 0);
-  $('#filter-options').on('click', 'p', function () {
-    $('#filter-options p').removeClass('active');
-    $(this).addClass('active');
-    typeOfWorkGlobal = $(this).data('value');
-    offset = 0;
-    fetchWork(typeOfWorkGlobal, offset);
-  });
-  $('#see-more-work').click(function () {
-    fetchWork(typeOfWorkGlobal, offset);
-  });
-});
-
-/***/ }),
-
-/***/ "./assets/css/app.scss":
-/*!*****************************!*\
-  !*** ./assets/css/app.scss ***!
-  \*****************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
 /***/ })
 
 /******/ 	});
@@ -3962,44 +3793,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = __webpack_modules__;
-/******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/chunk loaded */
-/******/ 	!function() {
-/******/ 		var deferred = [];
-/******/ 		__webpack_require__.O = function(result, chunkIds, fn, priority) {
-/******/ 			if(chunkIds) {
-/******/ 				priority = priority || 0;
-/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
-/******/ 				deferred[i] = [chunkIds, fn, priority];
-/******/ 				return;
-/******/ 			}
-/******/ 			var notFulfilled = Infinity;
-/******/ 			for (var i = 0; i < deferred.length; i++) {
-/******/ 				var chunkIds = deferred[i][0];
-/******/ 				var fn = deferred[i][1];
-/******/ 				var priority = deferred[i][2];
-/******/ 				var fulfilled = true;
-/******/ 				for (var j = 0; j < chunkIds.length; j++) {
-/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every(function(key) { return __webpack_require__.O[key](chunkIds[j]); })) {
-/******/ 						chunkIds.splice(j--, 1);
-/******/ 					} else {
-/******/ 						fulfilled = false;
-/******/ 						if(priority < notFulfilled) notFulfilled = priority;
-/******/ 					}
-/******/ 				}
-/******/ 				if(fulfilled) {
-/******/ 					deferred.splice(i--, 1)
-/******/ 					var r = fn();
-/******/ 					if (r !== undefined) result = r;
-/******/ 				}
-/******/ 			}
-/******/ 			return result;
-/******/ 		};
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -4028,72 +3822,99 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		};
 /******/ 	}();
 /******/ 	
-/******/ 	/* webpack/runtime/jsonp chunk loading */
-/******/ 	!function() {
-/******/ 		// no baseURI
-/******/ 		
-/******/ 		// object to store loaded and loading chunks
-/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
-/******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
-/******/ 		};
-/******/ 		
-/******/ 		// no chunk on demand loading
-/******/ 		
-/******/ 		// no prefetching
-/******/ 		
-/******/ 		// no preloaded
-/******/ 		
-/******/ 		// no HMR
-/******/ 		
-/******/ 		// no HMR manifest
-/******/ 		
-/******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
-/******/ 		
-/******/ 		// install a JSONP callback for chunk loading
-/******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
-/******/ 			var chunkIds = data[0];
-/******/ 			var moreModules = data[1];
-/******/ 			var runtime = data[2];
-/******/ 			// add "moreModules" to the modules object,
-/******/ 			// then flag all "chunkIds" as loaded and fire callback
-/******/ 			var moduleId, chunkId, i = 0;
-/******/ 			if(chunkIds.some(function(id) { return installedChunks[id] !== 0; })) {
-/******/ 				for(moduleId in moreModules) {
-/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
-/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
-/******/ 					}
-/******/ 				}
-/******/ 				if(runtime) var result = runtime(__webpack_require__);
-/******/ 			}
-/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
-/******/ 			for(;i < chunkIds.length; i++) {
-/******/ 				chunkId = chunkIds[i];
-/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
-/******/ 					installedChunks[chunkId][0]();
-/******/ 				}
-/******/ 				installedChunks[chunkId] = 0;
-/******/ 			}
-/******/ 			return __webpack_require__.O(result);
-/******/ 		}
-/******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkibrarrkhan"] = self["webpackChunkibrarrkhan"] || [];
-/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
-/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
-/******/ 	}();
-/******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], function() { return __webpack_require__("./assets/js/header.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/app"], function() { return __webpack_require__("./assets/js/testimonials.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/app"], function() { return __webpack_require__("./assets/js/work-filter.js"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], function() { return __webpack_require__("./assets/css/app.scss"); })
-/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+!function() {
+"use strict";
+var __webpack_exports__ = {};
+/*!***********************************!*\
+  !*** ./assets/js/testimonials.js ***!
+  \***********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @splidejs/splide */ "./node_modules/@splidejs/splide/dist/js/splide.esm.js");
+
+jQuery(document).ready(function ($) {
+  var splide = new _splidejs_splide__WEBPACK_IMPORTED_MODULE_0__["default"]('#testimonials-slider', {
+    type: 'loop',
+    focus: 'center',
+    isNavigation: true,
+    updateOnMove: true,
+    perPage: 3,
+    perMove: 1,
+    breakpoints: {
+      991: {
+        perPage: 2
+      },
+      767: {
+        perPage: 1
+      }
+    }
+  });
+  splide.mount();
+});
+}();
+// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
+!function() {
+/*!**********************************!*\
+  !*** ./assets/js/work-filter.js ***!
+  \**********************************/
+jQuery(document).ready(function ($) {
+  var offset = 0;
+  var typeOfWorkGlobal = 'all';
+  var itemsPerLoad = 5;
+  var totalItems = 0;
+  var isLoading = false;
+  function fetchWork(typeOfWork, newOffset) {
+    if (isLoading) return;
+    isLoading = true;
+    $('#loading-indicator').show();
+    $('.work-separator.top').addClass('loading-work');
+    $.ajax({
+      url: frontendajax.ajaxurl,
+      type: 'POST',
+      data: {
+        action: 'filter_work',
+        type_of_work: typeOfWork,
+        offset: offset
+      },
+      success: function success(response) {
+        var data = JSON.parse(response);
+        if (newOffset === 0) {
+          $('#all-work-container').html(data.html);
+        } else {
+          $('#all-work-container').append(data.html);
+        }
+        totalItems = data.total;
+        offset += itemsPerLoad;
+        if (offset >= totalItems) {
+          $('#see-more-work').hide();
+        } else {
+          $('#see-more-work').show();
+        }
+        $('#loading-indicator').hide();
+        isLoading = false;
+        $('.work-separator.top').removeClass('loading-work');
+      },
+      error: function error() {
+        $('#loading-indicator').hide();
+        isLoading = false;
+        $('.work-separator.top').removeClass('loading-work');
+      }
+    });
+  }
+  fetchWork('all', 0);
+  $('#filter-options').on('click', 'p', function () {
+    $('#filter-options p').removeClass('active');
+    $(this).addClass('active');
+    typeOfWorkGlobal = $(this).data('value');
+    offset = 0;
+    fetchWork(typeOfWorkGlobal, offset);
+  });
+  $('#see-more-work').click(function () {
+    fetchWork(typeOfWorkGlobal, offset);
+  });
+});
+}();
 /******/ })()
 ;

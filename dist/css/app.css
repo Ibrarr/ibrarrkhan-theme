@@ -4,6 +4,11 @@
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+}
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
@@ -13542,7 +13547,7 @@ header#header .container .hamburger-menu.active .bar3 {
 @media only screen and (max-width: 767px) {
   header#header .container nav {
     position: absolute;
-    top: 83px;
+    top: 80px;
     right: 0;
     padding: 20px 40px;
     text-align: right;
@@ -13602,7 +13607,7 @@ main #top .heading-button {
   width: fit-content;
   text-decoration: none;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: capitalize;
   color: #208EF4;
   border: 2px solid #208EF4;
@@ -13642,7 +13647,7 @@ main #top p {
   }
 }
 main #top p span {
-  font-weight: 600;
+  font-weight: 700;
 }
 main #about {
   scroll-margin-top: 80px;
@@ -13783,7 +13788,13 @@ main #work #loading-indicator {
   display: none;
   text-align: center;
   position: relative;
-  margin: 40px 0;
+  margin-left: 10px;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+main #work #loading-indicator .spinner-border {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 main #work #see-more-work {
   display: block;
@@ -13802,6 +13813,12 @@ main #work #see-more-work {
   font-size: 1rem;
   line-height: 1.5rem;
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 main #work #see-more-work:hover {
   background: #dee9f4;
@@ -13818,15 +13835,73 @@ main #work .container {
   padding-bottom: 50px;
 }
 main #work .work-separator {
+  position: relative;
+  height: 2px;
+  overflow: hidden;
   margin: auto;
-  border-bottom: 2px solid #dee9f4;
+  background: #dee9f4; /* Ensure this variable is defined or use a hex code */
+}
+main #work .work-separator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 4px;
+  background-color: #208EF4;
+  display: none;
+  opacity: 0;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@media (max-width: 767.98px) {
+  main #work .work-separator::before {
+    width: 150px;
+  }
+}
+main #work .work-separator.loading-work::before {
+  display: block;
+  -webkit-animation: dash-animation 1s linear infinite, fadeInOut 1s linear forwards;
+  animation: dash-animation 1s linear infinite, fadeInOut 1s linear forwards;
+}
+@-webkit-keyframes dash-animation {
+  from {
+    left: -50px;
+  }
+  to {
+    left: 100%;
+  }
+}
+@keyframes dash-animation {
+  from {
+    left: -50px;
+  }
+  to {
+    left: 100%;
+  }
+}
+@-webkit-keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 main #work .mockup img {
   width: 75%;
 }
 main #work .information h3, main #work .information .h3 {
   color: #121212;
-  font-weight: 600;
+  font-weight: 700;
 }
 main #work .information p.description {
   color: #121212;
@@ -13880,7 +13955,7 @@ main #work .information .links .button:hover {
     line-height: 1rem;
   }
 }
-main #work .information .links .gitgub {
+main #work .information .links .github {
   width: 45px;
   display: block;
   padding: 5px;
@@ -13890,10 +13965,10 @@ main #work .information .links .gitgub {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-main #work .information .links .gitgub:hover {
+main #work .information .links .github:hover {
   background: #dee9f4;
 }
-main #work .information .links .gitgub img {
+main #work .information .links .github img {
   width: 100%;
 }
 @media (max-width: 767.98px) {
@@ -14195,6 +14270,60 @@ main #contact .form .contact-form input[type=submit]:hover {
 }
 @media (max-width: 575.98px) {
   main #contact .form .contact-form input[type=submit] {
+    font-size: 0.9rem;
+    line-height: 1rem;
+  }
+}
+
+.error404 .error-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  height: 90vh;
+}
+.error404 .error-section h1, .error404 .error-section .h1 {
+  font-size: clamp(7.5rem, -1.7308rem + 25.641vw, 17.5rem);
+  line-height: clamp(7.5rem, -1.7308rem + 25.641vw, 17.5rem);
+  color: #208EF4;
+}
+.error404 .error-section p {
+  font-size: clamp(1rem, 0.6538rem + 0.9615vw, 1.375rem);
+  color: #121212;
+}
+.error404 .error-section .home-button {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: #208EF4;
+  border: 2px solid #208EF4;
+  border-radius: 5px;
+  padding: 10px 15px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin: auto;
+}
+.error404 .error-section .home-button:hover {
+  background: #dee9f4;
+}
+@media (max-width: 575.98px) {
+  .error404 .error-section .home-button {
     font-size: 0.9rem;
     line-height: 1rem;
   }

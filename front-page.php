@@ -44,15 +44,20 @@
                 <p data-value="landing-page">Landing Pages</p>
             </div>
 
-            <div class="col-10 mb-4 work-separator"></div>
+            <div class="col-10 mb-4 work-separator top"></div>
 
-            <div id="all-work-container"><!-- Container to display the results --></div>
-            <button id="see-more-work" style="display:none;">See More</button>
+            <div id="all-work-container">
+                <?php
+                $response = get_filtered_work('all', 0, 5);
+                echo $response['html'];
+                ?>
+            </div>
+            <button id="see-more-work" style="display:none;">See More
             <div id="loading-indicator">
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-            </div>
+            </div></button>
         </div>
     </section>
 

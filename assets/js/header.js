@@ -50,11 +50,21 @@ jQuery(document).ready(function ($) {
     };
 
     $(".menu-item a, #site-logo a, .anchor-button").on("click", function (e) {
-        e.preventDefault();
-        let target = $(this).attr('href');
-        $(target)[0].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+        const href = $(this).attr('href');
+        if (href.startsWith('#')) {
+            const target = $(href);
+            if (target.length) {
+                e.preventDefault();
+                target[0].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
     });
+
+    $(document).on('workContentLoaded', function() {
+        console.log('workContentLoaded event was triggered');
+    });
+
 });

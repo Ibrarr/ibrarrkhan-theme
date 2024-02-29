@@ -2,6 +2,9 @@
   overflow-x: hidden;
 }
 
+// Fonts
+@import 'fonts';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -17,4 +20,5 @@
 // Components
 @import "components/header";
 @import "components/front-page/front-page";
+@import "components/404/404";
 @import "components/footer";

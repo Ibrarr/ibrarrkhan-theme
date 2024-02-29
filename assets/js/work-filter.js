@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
         if (isLoading) return;
         isLoading = true;
         $('#loading-indicator').show();
+        $('.work-separator.top').addClass('loading-work');
 
         $.ajax({
             url: frontendajax.ajaxurl,
@@ -36,11 +37,12 @@ jQuery(document).ready(function($) {
                 }
                 $('#loading-indicator').hide();
                 isLoading = false;
+                $('.work-separator.top').removeClass('loading-work');
             },
             error: function() {
                 $('#loading-indicator').hide();
                 isLoading = false;
-                console.log('Error fetching data');
+                $('.work-separator.top').removeClass('loading-work');
             }
         });
     }

@@ -1,11 +1,9 @@
 <?php get_header(); ?>
-<article id="post-0" class="post not-found">
-<header class="header">
-<h1 class="entry-title" itemprop="name"><?php esc_html_e( 'Not Found', 'ibrarrkhan' ); ?></h1>
-</header>
-<div class="entry-content" itemprop="mainContentOfPage">
-<p><?php esc_html_e( 'Nothing found for the requested page. Try a search instead?', 'ibrarrkhan' ); ?></p>
-<?php get_search_form(); ?>
-</div>
-</article>
+<section class="error-section">
+    <div class="container px-4">
+        <h1>404</h1>
+        <p>We can't seem to find the page you're looking for.</p>
+        <a class="home-button" href="/">Back to homepage</a>
+    </div>
+</section>
 <?php get_footer(); ?>
